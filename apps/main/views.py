@@ -20,7 +20,11 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 
 @ensure_csrf_cookie
 def home(request):
-	return render(request, "index.html")
+	if request.user.is_authenticated():
+		clientes = Cliente.objects.all()
+		return render(request,"main/index.html",{'clientes':clientes})
+	else:
+		return render(request,"index.html")
 
 #---------------------------------------------------------------
 #	LOGOUT
@@ -36,3 +40,37 @@ def logout(request):
 	request.session.clear()
 	return HttpResponseRedirect("/")
 
+def clientes(request):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	clientes  = Cliente.objects.all()
+	return render(request, "main/clientes.html",{'clientes':clientes})
+
+def consumos(request):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	consumos  = Consumo.objects.all()
+	return render(request, "main/consumos.html",{'consumos':consumos})
+
+def cliente(request,pk=None):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	cliente = Cliente.objects.get(id=pk)
+	return render(request, "main/cliente.html",{'cliente':cliente})
+
+def operarios(request):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	operarios = Operario.objects.all()
+	return render(request, "main/operarios.html",{'operarios':operarios})
+
+def operario(request,pk=None):
+	if not request.user.is_authenticated():
+		return HttpResponseRedirect("/")
+
+	operario = Operario.objects.get(id=pk)
+	return render(request, "main/operario.html",{'operario':operario})
