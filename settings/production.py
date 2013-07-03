@@ -11,6 +11,14 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
+#=================================================================================
+#   LOGIN CONFIG
+#=================================================================================
+
+LOGIN_URL = "/login"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_URL = "/logout"
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
