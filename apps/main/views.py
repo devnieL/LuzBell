@@ -21,3 +21,18 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 @ensure_csrf_cookie
 def home(request):
 	return render(request, "index.html")
+
+#---------------------------------------------------------------
+#	LOGOUT
+#---------------------------------------------------------------
+
+from django.contrib.auth import authenticate
+from django.contrib.auth import REDIRECT_FIELD_NAME, login as auth_login, logout as auth_logout, get_user_model
+from django.http import HttpResponse, HttpResponseRedirect
+from django.shortcuts import render
+
+def logout(request):
+	auth_logout(request)
+	request.session.clear()
+	return HttpResponseRedirect("/")
+
