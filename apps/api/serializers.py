@@ -9,6 +9,14 @@ from rest_framework.serializers import (
 )
 
 #=============================================================
+#	Login  Serializer
+#=============================================================
+
+class LoginSerializer(serializers.Serializer):
+	username = serializers.CharField()
+	password = serializers.CharField()
+
+#=============================================================
 #	Consumo Serializer
 #=============================================================
 
@@ -23,6 +31,8 @@ class ConsumoSerializer(serializers.HyperlinkedModelSerializer):
 
 class OperarioSerializer(serializers.HyperlinkedModelSerializer):
 	id = serializers.Field()
+	user = serializers.RelatedField()
+
 	class Meta:
 		model = Operario
 

@@ -1,0 +1,3 @@
+ST http://localhost:3000/api/consumos/add/ -d 'consumo=123&numero_sumi45' -H 'Authorization: Token 54d71a5d67339ed9701dd8dec669a870e2fd42e8'
+
+ 

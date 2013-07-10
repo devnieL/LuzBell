@@ -31,7 +31,7 @@ DATABASES = {
         'NAME': 'luzbell',                      # Or path to database file if using sqlite3.
         # The following settings are not used with sqlite3:
         'USER': 'devniel',
-        'PASSWORD': 'xxx',
+        'PASSWORD': 'dni007',
         'HOST': '',                      # Empty for localhost through domain sockets or '127.0.0.1' for localhost through TCP.
         'PORT': '',                      # Set to empty string for default.
     }
@@ -145,7 +145,9 @@ INSTALLED_APPS = (
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
     'apps.main',
+    'apps.api',
     'rest_framework',
+    'rest_framework.authtoken',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -175,4 +177,18 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+#=================================================================================
+#   REST FRAMEWORK CONFIG
+#=================================================================================
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': ('rest_framework.permissions.IsAdminUser',),
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ),
+    'PAGINATE_BY': 10
 }

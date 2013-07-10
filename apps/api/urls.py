@@ -8,6 +8,8 @@ import views
 
 urlpatterns = patterns('',
     url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+    url(r'^login/$', views.UserLogin.as_view()),
+    url(r'^consumos/add/$', views.RegistroConsumo.as_view()),
 )
 
 router = routers.DefaultRouter()
